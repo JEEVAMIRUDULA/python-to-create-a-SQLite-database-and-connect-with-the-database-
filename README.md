@@ -1,1 +1,33 @@
 # python-to-create-a-SQLite-database-and-connect-with-the-database-
+import sqlite3
+
+try:
+    
+    sqlite_Connection = sqlite3.connect('temp.db')
+    conn = sqlite_Connection.cursor()
+    print("\nDatabase created and connected to SQLite.")
+
+    
+    sqlite_select_Query = "select sqlite_version();"
+    conn.execute(sqlite_select_Query)
+    record = conn.fetchall()
+    print("\nSQLite Database Version is:", record)
+
+   
+    conn.close()
+
+except sqlite3.Error as error:
+    print("\nError while connecting to SQLite", error)
+
+finally:
+    if sqlite_Connection:
+        sqlite_Connection.close()
+        print("\nThe SQLite connection is closed.")
+
+Output:
+Database created and connected to SQLite.
+
+SQLite Database Version is: [('3.50.4',)]
+
+The SQLite connection is closed.
+
